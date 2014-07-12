@@ -1,7 +1,7 @@
 RNA-Seq
 =======
 
-Automated TopHat-cuffdiff pipeline for illumina paired-end data. This is a basic script written as a part of another pipeline, it will be updated with best practice methods in pyhton. For e.g os.sys() is no longer recommended.
+Automated TopHat-cuffdiff pipeline for illumina paired-end data. This is a basic script written as a part of another pipeline, it will be updated with best practice methods in pyhton. For e.g ```python os.sys() ``` is no longer recommended.
 
 This script performs:
 
@@ -26,12 +26,14 @@ This script assumes:
 
 Experimental grouping file should have the R1 files and the group number seperated by tab...an example file is given below:
 
+```python
 c1r1_R1_001.fastq.gz    1
 c1r2_R1_001.fastq.gz    1
 c1r3_R1_001.fastq.gz    1
 c2r1_R1_001.fastq.gz    2
 c2r2_R1_001.fastq.gz    2
 c2r3_R1_001.fastq.gz    2
+```
 
 
 Usage:
@@ -39,5 +41,5 @@ Usage:
 1.Open the script in any text editor and give full path to all the reguired files/folders.
 2. Then run the script using the following command:
     
-    python RNA-SEQ.py
+   ```sh  python RNA-SEQ.py ```
 
