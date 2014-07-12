@@ -1,4 +1,4 @@
-RNA-Seq
+Next Generation sequencing Data analysis: RNA-Seq
 =======
 
 Automated TopHat-cuffdiff pipeline for illumina paired-end data. This is a basic script written as a part of another pipeline, it will be updated with best practice methods in pyhton. For e.g ```python os.sys() ``` is no longer recommended.
