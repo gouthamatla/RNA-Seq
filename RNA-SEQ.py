@@ -1,14 +1,3 @@
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #  # #
-#
-# A Python wrapper to run tophat2 and cuffdiff on paired-end illumina files
-#  
-#  1.Align the R1 and R2 to given bowtie2 index
-#  2.Run Samtools to keep reads with uniqe mapping, sort and index
-#  3.Run CuffDiff on sorted files. Experimental grouping information will be taken from groupingInfo file
-#
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-
-
 import os,re
 
 #Please give full path
