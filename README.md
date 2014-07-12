@@ -3,14 +3,14 @@ RNA-Seq
 
 Automated TopHat-cuffdiff pipeline for illumina paired-end data. This is a basic script written as a part of another pipeline, it will be updated with best practice methods in pyhton. For e.g ```python os.sys() ``` is no longer recommended.
 
-This script performs:
+**This script performs:**
 
 1. Alignment to the genome with tophat2
 2. Then Removes the reads with mapping quality less than 50 ( unique mapping )
 3. Sort and index the bam files.
 4. Run cuffdiff based on experimental grouping.
 
-This script takes 
+**This script takes:**
 
 1. Path to set of input fastq files ( Illumina paired-end files with illumina naming convention).
 2. Path to genome fasta file.
@@ -19,7 +19,7 @@ This script takes
 5. Number of processors
 6. Experimental grouping file
 
-This script assumes:
+**This script assumes:**
 
 1. cufflinks package v2 installed and added to Path
 2. samtools is installed and added to path
@@ -36,10 +36,10 @@ c2r3_R1_001.fastq.gz    2
 ```
 
 
-Usage:
+**Usage:**
 
 1.Open the script in any text editor and give full path to all the reguired files/folders.
 2. Then run the script using the following command:
     
-   ```sh  python RNA-SEQ.py ```
+   ``` python RNA-SEQ.py ```
 
