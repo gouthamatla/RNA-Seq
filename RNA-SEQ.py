@@ -47,9 +47,9 @@ def parseGroupInfo(groupingInfo):
 group1,group2=parseGroupInfo(groupingInfo)
 
 
-listOf_R1_File= sorted([fastq for fastq in os.listdir(Input_FilePath) if re.search("R1",fastq)])
+listOf_R1_File= sorted([fastq for fastq in os.listdir(Input_FilePath) if re.search("_R1_",fastq)])
 
-listOf_R2_File= sorted([fastq for fastq in os.listdir(Input_FilePath) if re.search("R2",fastq)])
+listOf_R2_File= sorted([fastq for fastq in os.listdir(Input_FilePath) if re.search("_R2_",fastq)])
 
 
 Paired_Files = zip(listOf_R1_File,listOf_R2_File)
