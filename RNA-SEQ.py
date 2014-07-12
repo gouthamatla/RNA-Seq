@@ -12,12 +12,12 @@
 import os,re
 
 #Please give full path
-Input_FilePath="/data1/pipeline_test_RNA_Seq/fastq_files"
-Path_to_Genome="/data1/kouichi_SNSWG/genome/genome.fa"
-Path_to_GenomeIndex="/data1/kouichi_SNSWG/genome/genome"
-Path_to_GTF="/data1/kouichi_SNSWG/chr1.genes_purified.gtf"
-No_of_processors="50"
-groupingInfo="/data1/pipeline_test_RNA_Seq/ExpGroup.txt"
+Input_FilePath=""
+Path_to_Genome=""
+Path_to_GenomeIndex=""
+Path_to_GTF=""
+No_of_processors=""
+groupingInfo=""
 
 ###{{{ Check the inputs
 
