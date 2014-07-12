@@ -1,7 +1,7 @@
 RNA-Seq
 =======
 
-Automated TopHat-cuffdiff pipeline for illumina paired-end data.
+Automated TopHat-cuffdiff pipeline for illumina paired-end data. This is a basic script written as a part of another pipeline, it will be updated with best practice methods in pyhton. For e.g os.sys() is no longer recommended.
 
 This script performs:
 
