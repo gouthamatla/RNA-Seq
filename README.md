@@ -43,3 +43,8 @@ c2r3_R1_001.fastq.gz    2
     
    ``` python RNA-SEQ.py ```
 
+
+To do:
+
+Flexibility to give extra parameters to TopHat2 and cuffdiff
+
