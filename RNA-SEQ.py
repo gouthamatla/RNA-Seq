@@ -16,9 +16,9 @@ if not os.path.isdir(Input_FilePath):
 if not os.path.exists(Path_to_Genome):
 	print "Genome fasta file does not exists"
 	exit()
-#if not os.path.exists(Path_to_GenomeIndex):
-#	print "Path to genome build does not exists"
-#	exit()
+if not os.path.exists(Path_to_GenomeIndex+".1.bt2"):
+	print "Path to genome build does not exists"
+	exit()
 
 if not os.path.exists(Path_to_GTF):
 	print "GTF file does not exists in the given path"
@@ -108,6 +108,7 @@ for dir in tophat_Outdirds:
 	os.system(index)
 
 cuffdiff_cmd="cuffdiff -o CuffDiff_Output -p "+ No_of_processors+" -u -b " +Path_to_Genome+" "+Path_to_GTF+" -L 1,2 "+group1+" "+group2+" &> CuffDiff_Output.log" 
+
 print cuffdiff_cmd
 
 os.system(cuffdiff_cmd)
