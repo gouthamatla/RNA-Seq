@@ -1,9 +1,7 @@
 import gzip,numpy
 from Bio import SeqIO
-from single_num import insert_length
 
-
-read_count_matrix = open("transcript_data_sim1.txt","r")
+read_count_matrix = open("test_matrix.txt","r")
 
 number_of_samples=6
 
@@ -25,6 +23,7 @@ def single_num(mean,sd):
     return num
 
 def generate_fasta(sample_name,count,transcript_id,read1,read2):
+    print sample_name
     sample_R1=open("sample_"+sample_name+"_R1.fastq","a")
     sample_R1.write(">"+"sample_"+sample_name+"_"+transcript_id+"_"+str(count)+"/1")
     sample_R1.write("\n")
@@ -56,7 +55,7 @@ def get_NormallyDistributedInsertLengths(sample_name,transcript_name,copy_number
             frag_len.write(str(len(fragment))+"\n")
             read1=fragment[0:101]
             read2=fragment[-101:]
-            generate_fasta(str(1),count,transcript_name, str(read1), str(read2))
+            generate_fasta(str(sample_name),count,transcript_name, str(read1), str(read2))
             count+=1
         
     elif transcript_length<=202:
@@ -67,7 +66,7 @@ def get_NormallyDistributedInsertLengths(sample_name,transcript_name,copy_number
             frag_len.write(str(len(fragment))+"\n")
             read1=fragment[0:101]
             read2=fragment[-101:]
-            generate_fasta(str(1),count, transcript_name, str(read1),str(read2))
+            generate_fasta(str(sample_name),count, transcript_name, str(read1),str(read2))
             count+=1
             
 for sample in range(1,7):
@@ -78,5 +77,6 @@ for sample in range(1,7):
         transcripts_matrix=transcript.split("\t")    
         transcript_name=transcripts_matrix[0]
         transcript_count=transcripts_matrix[int(sample)]
+        #print sample_name,transcript_name,len(transcript_dict[transcript_name]),transcript_count
         get_NormallyDistributedInsertLengths(sample,transcript_name,int(transcript_count))
     read_count_matrix.seek(0)
