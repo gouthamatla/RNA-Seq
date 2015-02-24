@@ -78,6 +78,5 @@ for sample in range(1,7):
         transcripts_matrix=transcript.split("\t")    
         transcript_name=transcripts_matrix[0]
         transcript_count=transcripts_matrix[int(sample)]
-        #print sample_name,transcript_name,len(transcript_dict[transcript_name]),transcript_count
         get_NormallyDistributedInsertLengths(sample,transcript_name,int(transcript_count))
     read_count_matrix.seek(0)
