@@ -1,6 +1,12 @@
 import gzip
 import numpy,random
 
+#10000 should not have any foldchange
+#3000 should have 10 fold change in condition 1
+#2000 should have 10 fold change in condition 2
+#200 should be expressed only in condition 1
+#200 should express only in condition 2
+
 foldchange_array=['10000,1','3000,10','2000,-10','200,+','200,-']
 true_fold_change=open("true_fc.txt","w")
 
