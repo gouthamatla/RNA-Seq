@@ -10,8 +10,13 @@ import numpy,random
 foldchange_array=['10000,1','3000,10','2000,-10','200,+','200,-']
 true_fold_change=open("true_fc.txt","w")
 
+#minimum number of reads per transcript expressed
 num_reads=100
+
+#number of replicates per condition
 num_replicates=[3,3]
+
+#This one I am not sure.
 dispersion=0.3
 
 
