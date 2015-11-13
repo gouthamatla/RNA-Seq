@@ -1,7 +1,12 @@
 #This script takes a query name sorted bam file and fixes the CIGAR string of STAR.
 # Eg:
-# 1S99M will be re written to 100M with changes in corresponding start position of the read wrt reference genome
-#
+# HISEQ:479:C78UFACXX:1:1101:10371:52836  99      chr1    121133905       255     97M3S   =       121133911
+# HISEQ:479:C78UFACXX:1:1101:10371:52836  147     chr1    121133911       255     1S99M   =       121133905
+
+#Will become
+# HISEQ:479:C78UFACXX:1:1101:10371:52836  99      chr1    121133905       27      100M    =       121133910
+# HISEQ:479:C78UFACXX:1:1101:10371:52836  147     chr1    121133910       27      100M    =       121133905
+
 
 import pysam,sys,re
 BAM = pysam.Samfile(sys.argv[1])
