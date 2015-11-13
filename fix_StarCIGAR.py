@@ -14,6 +14,7 @@ BAM = pysam.Samfile(sys.argv[1])
 header=BAM.header
 outfile = pysam.AlignmentFile(sys.argv[2], "wh", header=header)
 
+
 def fix_CIGAR(read):
 	
 	if "S" in read.cigarstring:
@@ -55,14 +56,17 @@ def fix_CIGAR(read):
 			new_CIGAR= int(softclipped_bases)+int(preceeding_matches)
 			new_CIGAR=str(new_CIGAR)+preceeding_letter
 			read.cigarstring=new_CIGAR
+	
 	else:
 		return read
+	
 	return read
 
 for read in BAM:
 	
-	if read.is_paired:
+	if read.is_paired and not read.mate_is_unmapped:
 		next_read=BAM.next()
+		print read.qname, next_read.qname
 		read=fix_CIGAR(read)
 		next_read=fix_CIGAR(next_read)
 		
@@ -72,7 +76,9 @@ for read in BAM:
 		
 		outfile.write(read)
 		outfile.write(next_read)
-	else:
+		
+	elif  read.is_paired and read.mate_is_unmapped or not read.is_paired:
+		print "Orphan", read.qname
 		read=fix_CIGAR(read)
 		read.next_reference_start=read.reference_start
 		outfile.write(read)
