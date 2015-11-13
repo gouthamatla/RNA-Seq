@@ -55,10 +55,8 @@ def fix_CIGAR(read):
 			new_CIGAR= int(softclipped_bases)+int(preceeding_matches)
 			new_CIGAR=str(new_CIGAR)+preceeding_letter
 			read.cigarstring=new_CIGAR
-	
 	else:
 		return read
-	
 	return read
 
 for read in BAM:
@@ -74,7 +72,6 @@ for read in BAM:
 		
 		outfile.write(read)
 		outfile.write(next_read)
-		
 	else:
 		read=fix_CIGAR(read)
 		read.next_reference_start=read.reference_start
