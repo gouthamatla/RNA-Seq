@@ -69,7 +69,7 @@ def get_NormallyDistributedInsertLengths(sample_name,transcript_name,copy_number
             generate_fasta(str(sample_name),count, transcript_name, str(read1),str(read2))
             count+=1
             
-for sample in range(1,7):
+for sample in range(1,number_of_samples+1):
     sample_name="Sample_"+str(sample)    
     
     for transcript in read_count_matrix:
