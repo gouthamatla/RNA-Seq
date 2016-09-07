@@ -1,13 +1,20 @@
 import gzip,numpy
 from Bio import SeqIO
+from Bio.Seq import Seq
 
 read_count_matrix = open("test_matrix.txt","r")
 
-number_of_samples=6
+# The file test_matrix.txt should look like this. As its two samples, two columns with the number of desired paired reads.
+#ENST00000356578	20000	23800
+#ENST00000250971	241000	206000
 
+number_of_samples=2
+
+#This a dummy quality score for each read, which is of 101bp.
+qual="IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII"
 transcript_dict={}
 
-for seq_record in SeqIO.parse(gzip.open("101_transcriptome_chr1.fa.gz"), "fasta"):
+for seq_record in SeqIO.parse(gzip.open("INS_IGF2.fasta.gz"), "fasta"):
     transcript_dict[seq_record.id]=seq_record.seq
 
 def single_num(mean,sd):
@@ -22,17 +29,33 @@ def single_num(mean,sd):
 
     return num
 
+# This function is quickly copied from Tommy Tang blog.
+#http://crazyhottommy.blogspot.co.uk/2013/10/python-code-for-getting-reverse.html
+def returnRevCom(read):
+    seq_dict = {'A':'T','T':'A','G':'C','C':'G'}
+    return "".join([seq_dict[base] for base in reversed(read)])
+
+
 def generate_fasta(sample_name,count,transcript_id,read1,read2):
     print sample_name
     sample_R1=open("sample_"+sample_name+"_R1.fastq","a")
-    sample_R1.write(">"+"sample_"+sample_name+"_"+transcript_id+"_"+str(count)+"/1")
+    sample_R1.write("@"+"sample_"+sample_name+"_"+transcript_id+"_"+str(count)+"/1")
     sample_R1.write("\n")
     sample_R1.write(read1)
     sample_R1.write("\n")
+    sample_R1.write("+")
+    sample_R1.write("\n")
+    sample_R1.write(qual)
+    sample_R1.write("\n")    
+
     sample_R2=open("sample_"+sample_name+"_R2.fastq","a")
-    sample_R2.write(">"+"sample_"+sample_name+"_"+transcript_id+"_"+str(count)+"/1")
+    sample_R2.write("@"+"sample_"+sample_name+"_"+transcript_id+"_"+str(count)+"/1")
     sample_R2.write("\n")
-    sample_R2.write(read1)
+    sample_R2.write(read2)
+    sample_R2.write("\n")
+    sample_R2.write("+")
+    sample_R2.write("\n")
+    sample_R2.write(qual)
     sample_R2.write("\n")
 
 
@@ -55,7 +78,7 @@ def get_NormallyDistributedInsertLengths(sample_name,transcript_name,copy_number
             frag_len.write(str(len(fragment))+"\n")
             read1=fragment[0:101]
             read2=fragment[-101:]
-            generate_fasta(str(sample_name),count,transcript_name, str(read1), str(read2))
+            generate_fasta(str(sample_name),count,transcript_name, str(read1), returnRevCom(str(read2)))
             count+=1
         
     elif transcript_length<=202:
@@ -66,10 +89,10 @@ def get_NormallyDistributedInsertLengths(sample_name,transcript_name,copy_number
             frag_len.write(str(len(fragment))+"\n")
             read1=fragment[0:101]
             read2=fragment[-101:]
-            generate_fasta(str(sample_name),count, transcript_name, str(read1),str(read2))
+            generate_fasta(str(sample_name),count, transcript_name, str(read1), returnRevCom(str(read2)) )
             count+=1
             
-for sample in range(1,number_of_samples+1):
+for sample in range(1,3):
     sample_name="Sample_"+str(sample)    
     
     for transcript in read_count_matrix:
